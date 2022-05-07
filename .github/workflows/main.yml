@@ -28,12 +28,6 @@ jobs:
         run: |
           ng lint
 
-      - name: E2E Testing
-        run: |
-          npm install -g wait-on
-          npm start & wait-on http://localhost:4200
-          npm run cypress:run
-
       - name: Build & Deploy
         run: |
           ng deploy --base-href=/JWTools/ --repo=https://github.com/mfcar/JWTools.git --name=jwtools --email=$EMAIL --message="Build from ${GITHUB_SHA} in the source repository." --branch=gh-pages
