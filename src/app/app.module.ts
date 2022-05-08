@@ -20,6 +20,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { EditorHeaderComponent } from './editor/editor-header/editor-header.component';
 import { EditorFooterComponent } from './editor/editor-footer/editor-footer.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EditorFooterComponent } from './editor/editor-footer/editor-footer.comp
         MatButtonModule,
         MatSnackBarModule,
         MatBottomSheetModule,
-        MatTabsModule
+        MatTabsModule,
+        MatGridListModule
     ],
   providers: [],
   bootstrap: [AppComponent]
