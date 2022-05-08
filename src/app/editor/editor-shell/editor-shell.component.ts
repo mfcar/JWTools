@@ -10,17 +10,18 @@ import {JWTPayload} from "jose";
 export class EditorShellComponent {
   canvasName = 'Editor';
   sidebarOpen = false;
-  text = '';
-  decodedHeader: string | object = '';
+  originalToken = '';
+  actualToken = '';
+  decodedHeader: string | object | undefined;
   decodePayload: JWTPayload | undefined;
 
   constructor() {
   }
 
   onCodeChanged(value: any): void {
-    this.text = value;
+    this.actualToken = value;
 
-    this.decodedHeader = jose.decodeProtectedHeader(this.text);
-    this.decodePayload = jose.decodeJwt(this.text);
+    this.decodedHeader = jose.decodeProtectedHeader(this.actualToken);
+    this.decodePayload = jose.decodeJwt(this.actualToken);
   }
 }

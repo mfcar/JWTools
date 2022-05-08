@@ -21,13 +21,16 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { EditorHeaderComponent } from './editor/editor-header/editor-header.component';
 import { EditorFooterComponent } from './editor/editor-footer/editor-footer.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { AlertJwtCredentialWarningComponent } from './alerts/alert-jwt-credential-warning/alert-jwt-credential-warning.component';
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
     AppComponent,
     EditorShellComponent,
     EditorHeaderComponent,
-    EditorFooterComponent
+    EditorFooterComponent,
+    AlertJwtCredentialWarningComponent
   ],
     imports: [
         BrowserModule,
@@ -47,7 +50,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
         MatSnackBarModule,
         MatBottomSheetModule,
         MatTabsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatChipsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
