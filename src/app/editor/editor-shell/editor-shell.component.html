@@ -10,14 +10,16 @@
             </mat-card-header>
             <mat-card-content>
                 <h1>Encoded</h1>
-                <textarea [(ngModel)]="actualToken" (ngModelChange)="onCodeChanged($event)" rows="30"
+                <textarea [(ngModel)]="actualToken" (ngModelChange)="onEncodedTokenChanged($event)" rows="30"
                           cols="140"></textarea>
                 <br/><br/>
                 <h1>Decoded</h1>
-                <h2>Header</h2><br/>
-                <pre>{{decodedHeader|json}}</pre>
-                <h2>Payload</h2><br/>
-                <pre>{{decodePayload|json}}</pre>
+                <h2>Header</h2>
+                <textarea [(ngModel)]="decodedHeader" (ngModelChange)="onDecodedHeaderChanged($event)" rows="5"
+                          cols="140"></textarea>
+                <h2>Payload</h2>
+                <textarea [(ngModel)]="decodedPayload" (ngModelChange)="onDecodedPayloadChanged($event)" rows="30"
+                          cols="140"></textarea>
             </mat-card-content>
         </mat-card>
     </mat-drawer-content>

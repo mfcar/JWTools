@@ -22,7 +22,10 @@ export interface CanvasAnatomy {
 }
 
 export interface JwtCanvas {
+    id: number;
     canvasAnatomy: CanvasAnatomy;
     jwtAnatomy: JwtAnatomy;
-    jwt: object;
+    encodedToken: string;
+    decodedHeader: object;
+    decodedPayload: object;
 }

@@ -12,16 +12,34 @@ export class EditorShellComponent {
   sidebarOpen = false;
   originalToken = '';
   actualToken = '';
-  decodedHeader: string | object | undefined;
-  decodePayload: JWTPayload | undefined;
+  decodedHeader: string | undefined;
+  decodedPayload: string | undefined;
 
   constructor() {
   }
 
-  onCodeChanged(value: any): void {
+  onEncodedTokenChanged(value: any): void {
     this.actualToken = value;
 
-    this.decodedHeader = jose.decodeProtectedHeader(this.actualToken);
-    this.decodePayload = jose.decodeJwt(this.actualToken);
+    this.decodedHeader = JSON.stringify(jose.decodeProtectedHeader(this.actualToken), null, 2);
+    this.decodedPayload = JSON.stringify(jose.decodeJwt(this.actualToken), null, 2);
+  }
+
+  onDecodedHeaderChanged(value: any): void {
+
+
+    this.decodedHeader = JSON.stringify(jose.decodeProtectedHeader(this.actualToken), null, 2);
+    this.decodedPayload = JSON.stringify(jose.decodeJwt(this.actualToken), null, 2);
+  }
+
+  onDecodedPayloadChanged(value: any): void {
+    this.actualToken = value;
+
+    this.decodedHeader = JSON.stringify(jose.decodeProtectedHeader(this.actualToken), null, 2);
+    this.decodedPayload = JSON.stringify(jose.decodeJwt(this.actualToken), null, 2);
+  }
+
+  async signToken(header: string, payload: string): Promise<string> {
+    return await new jose.CompactSign(new TextEncoder().encode(this.decodedPayload)).setProtectedHeader({ alg: 'ES256' }).sign();
   }
 }
