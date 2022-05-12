@@ -23,6 +23,7 @@ import { EditorFooterComponent } from './editor/editor-footer/editor-footer.comp
 import {MatGridListModule} from "@angular/material/grid-list";
 import { AlertJwtCredentialWarningComponent } from './alerts/alert-jwt-credential-warning/alert-jwt-credential-warning.component';
 import {MatChipsModule} from "@angular/material/chips";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatChipsModule} from "@angular/material/chips";
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        FlexLayoutModule,
         MatListModule,
         MatIconModule,
         ReactiveFormsModule,
