@@ -9,37 +9,40 @@
                 <span class="spacer"></span>
             </mat-card-header>
             <mat-card-content>
-                <div fxLayout="row" fxLayoutAlign="space-around start">
-                    <div fxFlex="50%">
-                        <h1>
-                            <span>Encoded</span>
-                            <button mat-icon-button (click)="onCopyValue('Encoded token', actualToken)">
-                                <mat-icon>content_copy</mat-icon>
-                            </button>
-                        </h1>
-                        <textarea [(ngModel)]="actualToken" (ngModelChange)="onEncodedTokenChanged($event)" rows="30"
-                                  cols="100"></textarea>
+                <form [formGroup]="jwtEditor">
+                    <div fxLayout="row" fxLayoutAlign="space-around start">
+                        <div fxFlex="50%">
+                            <h1>
+                                <span>Encoded</span>
+                                <button mat-icon-button (click)="onCopyValue('Encoded token', jwtEditor.get('actualToken')?.value)">
+                                    <mat-icon>content_copy</mat-icon>
+                                </button>
+                            </h1>
+                            <textarea formControlName="actualToken" (ngModelChange)="onEncodedTokenChanged($event)"
+                                      rows="30"
+                                      cols="100" placeholder="Paste your jwt code"></textarea>
+                        </div>
+                        <div fxFlex="50%">
+                            <h1>Decoded</h1>
+                            <h2>
+                                <span>Header</span>
+                                <button mat-icon-button (click)="onCopyValue('Decoded header', jwtEditor.get('actualToken')?.value)">
+                                    <mat-icon>content_copy</mat-icon>
+                                </button>
+                            </h2>
+                            <textarea formControlName="decodedHeader" rows="5"
+                                      cols="100"></textarea>
+                            <h2>
+                                <span>Payload</span>
+                                <button mat-icon-button (click)="onCopyValue('Decoded payload', jwtEditor.get('actualToken')?.value)">
+                                    <mat-icon>content_copy</mat-icon>
+                                </button>
+                            </h2>
+                            <textarea formControlName="decodedPayload" rows="30"
+                                      cols="100"></textarea>
+                        </div>
                     </div>
-                    <div fxFlex="50%">
-                        <h1>Decoded</h1>
-                        <h2>
-                            <span>Header</span>
-                            <button mat-icon-button (click)="onCopyValue('Decoded header', actualToken)">
-                                <mat-icon>content_copy</mat-icon>
-                            </button>
-                        </h2>
-                        <textarea [(ngModel)]="decodedHeader" rows="5"
-                                  cols="100"></textarea>
-                        <h2>
-                            <span>Payload</span>
-                            <button mat-icon-button (click)="onCopyValue('Decoded payload', actualToken)">
-                                <mat-icon>content_copy</mat-icon>
-                            </button>
-                        </h2>
-                        <textarea [(ngModel)]="decodedPayload" rows="30"
-                                  cols="100"></textarea>
-                    </div>
-                </div>
+                </form>
             </mat-card-content>
         </mat-card>
     </mat-drawer-content>

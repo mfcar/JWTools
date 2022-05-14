@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import * as jose from 'jose'
 import {Clipboard} from '@angular/cdk/clipboard';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
     selector: 'app-editor-shell',
@@ -12,18 +13,22 @@ export class EditorShellComponent {
     canvasName = 'Editor';
     sidebarOpen = false;
     originalToken = '';
-    actualToken = '';
-    decodedHeader: string | undefined;
-    decodedPayload: string | undefined;
+    jwtEditor = new FormGroup({
+        actualToken: new FormControl(''),
+        decodedHeader: new FormControl(''),
+        decodedPayload: new FormControl('')
+    });
 
     constructor(private clipboard: Clipboard, private _snackBar: MatSnackBar) {
     }
 
     onEncodedTokenChanged(value: any): void {
-        this.actualToken = value;
 
-        this.decodedHeader = JSON.stringify(jose.decodeProtectedHeader(this.actualToken), null, 2);
-        this.decodedPayload = JSON.stringify(jose.decodeJwt(this.actualToken), null, 2);
+        this.jwtEditor.setValue({
+            actualToken: value,
+            decodedHeader: JSON.stringify(jose.decodeProtectedHeader(this.jwtEditor.get('actualToken')?.value), null, 2),
+            decodedPayload: JSON.stringify(jose.decodeJwt(this.jwtEditor.get('actualToken')?.value), null, 2),
+        });
     }
 
     // onDecodedHeaderChanged(value: any): void {
